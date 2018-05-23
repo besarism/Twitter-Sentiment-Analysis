@@ -30,12 +30,6 @@ To install those packages you can use pip, for example:
 pip install Twython
 ```
 
-Or to make it easier for you, you only have to run this:
-
-```
-pip install -r /path/to/requirements.txt
-```
-
 
 ## Running the tests
 
