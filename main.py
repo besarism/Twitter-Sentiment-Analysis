@@ -1,6 +1,18 @@
 import tkinter as tk #ui package
 
 
+
+
+# functions
+cordinates = ""
+def get_location():
+    print("get location")
+
+def load_data():
+	# do something
+    print("load data")
+
+
 # here we setup the UI
 
 window = tk.Tk()
@@ -26,7 +38,7 @@ address_entry.place(x=350, y=105, anchor="center")
 # range_entry = tk.Entry(justify='center')
 # range_entry.place(x=480, y=105, width=50, anchor="center")
 
-address_button = tk.Button(text="Locate")
+address_button = tk.Button(text="Locate", command=get_location)
 address_button.place(x=350, y=165, anchor="center")
 
 
@@ -47,6 +59,8 @@ input_range_label.place(x=350, y=280, anchor="center")
 range_entry = tk.Entry(justify='center')
 range_entry.place(x=480, y=280, width=50, anchor="center")
 
-load_data_button = tk.Button(text="Analyze data",state=tk.DISABLED)
+load_data_button = tk.Button(text="Analyze data",state=tk.DISABLED, command=load_data)
 load_data_button.place(x=350, y=310, anchor="center")
+
+
 window.mainloop()
