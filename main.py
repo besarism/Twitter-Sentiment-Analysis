@@ -12,7 +12,8 @@ matplotlib.use("TkAgg")
 from matplotlib import pyplot as plt
 import numpy as np
 from matplotlib import cm
-
+import datetime											 # datetime - helps us to get current day date
+import time												 # time - helps us to format created_date of the particular tweet
 
 
 APP_KEY = 'ENTER'
@@ -24,7 +25,20 @@ twitter = Twython (
 	APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET
 )
 
-# functions
+# functions and vars
+now = datetime.datetime.now()
+filter_date = False
+date_today = now.strftime("%Y-%m-%d")
+
+def check_action1():
+	global filter_date
+	filter_date = not filter_date
+	print(filter_date)
+
+def check_action2():
+	# do something
+	print("check action 2")
+
 cordinates = ""
 def get_location():
 	global cordinates
@@ -39,6 +53,14 @@ def get_location():
 	load_data_button.config(state=tk.NORMAL)
 	print(location.latitude, location.longitude)
 	cordinates = f"{location.latitude},{location.longitude}"
+
+def get_polarity(text):
+	blob = TextBlob(text)
+	print(text)
+	sentiment = blob.sentiment
+	polarity = sentiment.polarity
+	return polarity
+
 
 
 def load_data():
@@ -55,13 +77,22 @@ def load_data():
 	number_of_tweets = []
 	for i,tweet in enumerate(tweets):
 		print(i)
-		blob = TextBlob(tweet['text'])
-		print(tweet['text'])
-		sentiment = blob.sentiment
-		polarity = sentiment.polarity
-		polarity_list.append(polarity)
-		number_of_tweets.append(i + 1)
-
+		print(tweet['created_at'])
+		print("==============================================")
+		if filter_date:
+			tweet_created_date = time.strftime('%Y-%m-%d', time.strptime(tweet['created_at'], '%a %b %d %H:%M:%S +0000 %Y'))
+			if tweet_created_date == date_today:
+				text = tweet['text']
+				polarity = get_polarity(text)
+				polarity_list.append(polarity)
+				number_of_tweets.append(i + 1)
+			else:
+				print("This tweets is rejected because is more than a day old")
+		else:
+			text = tweet['text']
+			polarity = get_polarity(text)
+			polarity_list.append(polarity)
+			number_of_tweets.append(i + 1)
 
 
 	print(len(number_of_tweets), len(tweets))
@@ -137,6 +168,8 @@ range_entry.place(x=480, y=280, width=50, anchor="center")
 load_data_button = tk.Button(text="Analyze data",state=tk.DISABLED, command=load_data)
 load_data_button.place(x=350, y=310, anchor="center")
 
+date_checkbutton = tk.Checkbutton(text="Only tweets of today", command=check_action1)
+date_checkbutton.place(x=350, y=350, anchor="center")
 
 
 window.mainloop()
