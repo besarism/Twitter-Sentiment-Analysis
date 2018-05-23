@@ -40,8 +40,10 @@ def check_action2():
 	print("check action 2")
 
 cordinates = ""
+address = ""
 def get_location():
 	global cordinates
+	global address
 	address = address_entry.get()
 	geolocator = Nominatim()
 	if address == "":
@@ -62,11 +64,11 @@ def get_polarity(text):
 	return polarity
 
 
-
+search_text = ""
 def load_data():
 	# do something
 	global cordinates
-	# print(search_text, no_of_tweets, geocode)
+	global search_text
 	search_text = "ELA AS" if text_entry.get() == "" else text_entry.get()
 	no_of_tweets = "100" if number_entry.get() == "" else number_entry.get()
 	range = "50" if range_entry.get() == "" else range_entry.get()
@@ -102,20 +104,14 @@ def load_data():
 	print(number_of_tweets)
 	print(polarity_list)
 
-	# Store pop as a numpy array: np_pop
-	np_pop = np.array(polarity_list)
-	# Double np_pop
-	np_pop = np_pop * 100
 
 
-
-	cs = plt.scatter(number_of_tweets, polarity_list, s=np_pop, c=polarity_list, cmap=cm.jet, vmin=-2., vmax=2., alpha=0.8)
+	cs = plt.scatter(number_of_tweets, polarity_list, c=polarity_list, cmap=cm.jet, vmin=-2., vmax=2., alpha=0.8)
 	plt.colorbar(cs)
-	plt.show()
 
 
-	plt.title("Sentiment")
-	plt.xlabel("Number of Tweets")
+	plt.title(f"Sentiment of {search_text} in {address}")
+	plt.xlabel("# of Tweets analyzed")
 	plt.ylabel("Sentiment")
 	plt.show()
 

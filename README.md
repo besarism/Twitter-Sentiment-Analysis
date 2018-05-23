@@ -1,11 +1,10 @@
-
-![ELAAS](http://ela-as.no/website/wp-content/uploads/2017/11/logo-elabh-70x220-2.png)
-
-
-
+<p align="center">
+<img src="http://ela-as.no/website/wp-content/uploads/2017/11/logo-elabh-70x220-2.png" />
+</p>
 
 
-# Twitter Sentiment Analysis
+
+# ELA TSA - ELA Twitter Sentiment Analysis 
 
 Main goal of this mini-software is to identify emotional tone in the series of words that make each tweet.
 You will be asked to input the location, range of location, what tweets and the amount of tweets you are searching for and you will be served with a nice scatter plot of the sentiment of the each tweet.
@@ -31,6 +30,13 @@ To install those packages you can use pip, for example:
 pip install Twython
 ```
 
+Or to make it easier for you, you only have to run this:
+
+```
+pip install -r /path/to/requirements.txt
+```
+
+
 ## Running the tests
 
 You can clone this repository by adding this command to the path you want to save this software:
@@ -42,8 +48,23 @@ And then you locate where main.py file is and run the file:
 ```
 python main.py
 ```
-And then you will see a window which asks for location, tweet search text and some other info
-![alt text](http://url/to/img.png)
+And then you will see a window like this
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/besarism/Twitter-Sentiment-Analysis/master/images/window1.png" />
+</p>
+
+And you will be able to filter your search by your keyword, location, range of the location (miles) also you will can decide if the tweets that are going to be analyzed to be less than a day old
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/besarism/Twitter-Sentiment-Analysis/master/images/window2.png" />
+</p>
+
+After you hit analyze data button, the software in background will get all the tweets matching your search criteria using Twython, will analyze their sentiment using Textblob package and finally will serve you with a really beautiful scatter plot using Matplotlib.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/besarism/Twitter-Sentiment-Analysis/master/images/window3.png" />
+</p>
 
 
 
