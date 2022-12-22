@@ -1,10 +1,6 @@
-<p align="center">
-<img src="http://ela-as.no/website/wp-content/uploads/2017/11/logo-elabh-70x220-2.png" />
-</p>
 
 
-
-# ELA TSA - ELA Twitter Sentiment Analysis 
+Twitter Sentiment Analysis 
 
 Main goal of this mini-software is to identify emotional tone in the series of words that make each tweet.
 You will be asked to input the location, range of location, what tweets and the amount of tweets you are searching for and you will be served with a nice scatter plot of the sentiment of the each tweet.
